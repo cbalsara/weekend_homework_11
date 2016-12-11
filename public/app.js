@@ -35,9 +35,13 @@ var populateList = function(characters){
     newPerson.innerText = person.name;
     console.log(person);
 
-    // append it
+    var image = person.image;
+    var photo = document.createElement('img');
+    photo.src = image;
 
+    // append it
     newCharacter.appendChild(newPerson);
+    newCharacter.appendChild(photo);
 
 
   } 
