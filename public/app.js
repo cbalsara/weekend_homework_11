@@ -5,7 +5,11 @@ var app = function(){
   change.onchange = selectChangedHandle;
 
   makeRequest(url, requestComplete);
+  
+  new PieChart("area", "Number of Wizards Per House", "Total:", [10,1,1,9], ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]);
 };
+
+// ------------------------------------------------------------------
 
 var makeRequest = function(url, callback){
   var request = new XMLHttpRequest();
@@ -14,6 +18,8 @@ var makeRequest = function(url, callback){
   request.send();
   console.log("will apear before the requestComplete function")
 };
+
+// ------------------------------------------------------------------
 
 var requestComplete = function(){
   if(this.status != 200) return;
@@ -28,9 +34,11 @@ console.log("this should appear last behind every called function");
 
 console.log("first seen")
 
+// ------------------------------------------------------------------
+
 var populateList = function(characters){
   var newCharacter = document.getElementById('character-select');
-  console.log(characters);
+  // console.log(characters);
 
   for (person of characters){
     var newPerson = document.createElement("option");
@@ -52,14 +60,12 @@ var populateList = function(characters){
   } 
 };
 
+// ------------------------------------------------------------------
+
 var selectChangedHandle = function(){
   var selectedOption = this.options[this.selectedIndex];
   // console.log(this.options);
   var chosenPerson = selectedOption.character;
-  
-
-  var actorName = document.getElementById('actor-name');
-  actorName.innerText = chosenPerson.actor;
 
   var name = document.getElementById('character-name');
   name.innerText = chosenPerson.name;
@@ -79,15 +85,8 @@ var selectChangedHandle = function(){
 
   var status = document.getElementById('character-status');
   status.innerText = "Did they survive in the books?: " + chosenPerson.alive;
-
 };
 
-
-
-
-
-
-
-
+// ------------------------------------------------------------------
 
 window.onload = app;
