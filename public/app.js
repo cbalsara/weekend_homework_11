@@ -1,6 +1,8 @@
 var app = function(){
-
   var url = 'http://hp-api.herokuapp.com/api/characters/students';
+  var change = document.getElementById('character-select');
+
+  change.onchange = selectChangedHandle;
 
   makeRequest(url, requestComplete);
 };
@@ -27,24 +29,43 @@ console.log("this should appear last behind every called function");
 console.log("first seen")
 
 var populateList = function(characters){
-  var newCharacter = document.getElementById('HP-Characters');
+  var newCharacter = document.getElementById('character-select');
   // console.log(characters);
 
   for (person of characters){
-    var newPerson = document.createElement("li");
+    var newPerson = document.createElement("option");
     newPerson.innerText = person.name;
-    console.log(person);
+    newPerson.character = person
+    // console.log(newPerson.character);
 
     var image = person.image;
     var photo = document.createElement('img');
     photo.src = image;
 
-    // append it
+    var wandCore = person.wand.core;
+    var wand = document.createElement("li");
+    wand.innerText = wandCore;
+
     newCharacter.appendChild(newPerson);
     newCharacter.appendChild(photo);
-
-
+    newCharacter.appendChild(wand);
   } 
+};
+
+var selectChangedHandle = function(){
+  var selectedOption = this.options[this.selectedIndex];
+  // console.log(this.options);
+  var chosenPerson = selectedOption.character;
+
+  var name = document.getElementById('character-name');
+  name.innerText = chosenPerson.name;
+  // console.log(name);
+
+  var house = document.getElementById('character-house');
+  house.innerText = chosenPerson.house;
+
+  var picture = document.getElementById('character-picture');
+  picture.src = chosenPerson.image;
 };
 
 
