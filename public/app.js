@@ -1,5 +1,5 @@
 var app = function(){
-  var url = 'http://hp-api.herokuapp.com/api/characters/students';
+  var url = 'http://hp-api.herokuapp.com/api/characters';
   var change = document.getElementById('character-select');
 
   change.onchange = selectChangedHandle;
@@ -30,25 +30,25 @@ console.log("first seen")
 
 var populateList = function(characters){
   var newCharacter = document.getElementById('character-select');
-  // console.log(characters);
+  console.log(characters);
 
   for (person of characters){
     var newPerson = document.createElement("option");
-    newPerson.innerText = person.name;
+    newPerson.innerText = person.actor;
     newPerson.character = person
     // console.log(newPerson.character);
 
-    var image = person.image;
-    var photo = document.createElement('img');
-    photo.src = image;
+    // var image = person.image;
+    // var photo = document.createElement('img');
+    // photo.src = image;
 
-    var wandCore = person.wand.core;
-    var wand = document.createElement("li");
-    wand.innerText = wandCore;
+    // var wandCore = person.wand.core;
+    // var wand = document.createElement("li");
+    // wand.innerText = wandCore;
 
     newCharacter.appendChild(newPerson);
-    newCharacter.appendChild(photo);
-    newCharacter.appendChild(wand);
+    // newCharacter.appendChild(photo);
+    // newCharacter.appendChild(wand);
   } 
 };
 
@@ -56,17 +56,33 @@ var selectChangedHandle = function(){
   var selectedOption = this.options[this.selectedIndex];
   // console.log(this.options);
   var chosenPerson = selectedOption.character;
+  
+
+  var actorName = document.getElementById('actor-name');
+  actorName.innerText = chosenPerson.actor;
 
   var name = document.getElementById('character-name');
   name.innerText = chosenPerson.name;
   // console.log(name);
 
-  var house = document.getElementById('character-house');
-  house.innerText = chosenPerson.house;
-
   var picture = document.getElementById('character-picture');
-  picture.src = chosenPerson.image;
+    picture.jpeg = chosenPerson.image;
+
+  var house = document.getElementById('character-house');
+  house.innerText = "Hogwarts House: " + chosenPerson.house;
+
+  var patronus = document.getElementById('character-patronus');
+  patronus.innerText = "Patronus: " + chosenPerson.patronus;
+
+  var wandCore = document.getElementById('character-wandCore');
+  wandCore.innerText = "Wand Info: " + chosenPerson.wand.core + " -  Length: " + chosenPerson.wand.length + " - Type: " +  chosenPerson.wand.wood;
+
+  var status = document.getElementById('character-status');
+  status.innerText = "Did they survive in the books?: " + chosenPerson.alive;
+
 };
+
+
 
 
 
