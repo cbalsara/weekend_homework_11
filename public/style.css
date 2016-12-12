@@ -1,4 +1,5 @@
 
+
 main{
   width: 300px;
   margin: 0 auto;
@@ -18,7 +19,7 @@ input{
 
 img{
   width: 200px;
-  height: 100px;
+  height: 200px;
   border-radius: 5px;
   margin: 10px;
   padding: 20px;

@@ -72,11 +72,12 @@ var selectChangedHandle = function(){
 
 
 // ------------------------------------------------------------------
-  var picture = document.getElementById('character-picture');
-    picture.src = chosenPerson.image;
-  // console.log(picture.src);
+  var picture = document.querySelector('#character-picture');
+  var img = document.createElement('img');
+    img.src = chosenPerson.image;
+    picture.appendChild(img);
+  // console.log(img.src);
 // ------------------------------------------------------------------
-
 
   var house = document.getElementById('character-house');
   house.innerText = "Hogwarts House: " + chosenPerson.house;
