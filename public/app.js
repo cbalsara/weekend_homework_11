@@ -25,7 +25,7 @@ var jsonString = this.responseText;
 var characters = JSON.parse(jsonString);
 //  calling on methods will go here  as it is the reuqestCompelete
 populateList(characters); 
-new ChartType("area", "Number of Listed Wizards Per House", "Total:", [10,1,1,9], ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]);
+new ChartType("bar", "Number of Listed Wizards Per House", "Total:", [10,1,1,9], ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]);
 
 console.log("this should appear last behind every called function");
 };
@@ -70,14 +70,14 @@ var selectChangedHandle = function(){
   name.innerText = chosenPerson.name;
   // console.log(name);
 
-
 // ------------------------------------------------------------------
-  var picture = document.querySelector('#character-picture');
-  var img = document.createElement('img');
+
+    var picture = document.getElementById('character-picture');
+    var img = document.createElement('img');
+    picture.innerHTML = '';
     img.src = chosenPerson.image;
     picture.appendChild(img);
-  // console.log(img.src);
-// ------------------------------------------------------------------
+    // console.log(img.src);
 
   var house = document.getElementById('character-house');
   house.innerText = "Hogwarts House: " + chosenPerson.house;
