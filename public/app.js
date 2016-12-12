@@ -1,12 +1,8 @@
 var app = function(){
   var url = 'http://hp-api.herokuapp.com/api/characters';
   var change = document.getElementById('character-select');
-
   change.onchange = selectChangedHandle;
-
   makeRequest(url, requestComplete);
-  
-  new PieChart("area", "Number of Wizards Per House", "Total:", [10,1,1,9], ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]);
 };
 
 // ------------------------------------------------------------------
@@ -29,10 +25,12 @@ var jsonString = this.responseText;
 var characters = JSON.parse(jsonString);
 //  calling on methods will go here  as it is the reuqestCompelete
 populateList(characters); 
+new ChartType("area", "Number of Listed Wizards Per House", "Total:", [10,1,1,9], ["Gryffindor", "Hufflepuff", "Ravenclaw", "Slytherin"]);
+
 console.log("this should appear last behind every called function");
 };
 
-console.log("first seen")
+console.log("first seen example of output")
 
 // ------------------------------------------------------------------
 
@@ -65,14 +63,20 @@ var populateList = function(characters){
 var selectChangedHandle = function(){
   var selectedOption = this.options[this.selectedIndex];
   // console.log(this.options);
+  // console.log(this.selectedIndex);  
   var chosenPerson = selectedOption.character;
 
   var name = document.getElementById('character-name');
   name.innerText = chosenPerson.name;
   // console.log(name);
 
+
+// ------------------------------------------------------------------
   var picture = document.getElementById('character-picture');
-    picture.jpeg = chosenPerson.image;
+    picture.src = chosenPerson.image;
+  // console.log(picture.src);
+// ------------------------------------------------------------------
+
 
   var house = document.getElementById('character-house');
   house.innerText = "Hogwarts House: " + chosenPerson.house;
@@ -81,10 +85,10 @@ var selectChangedHandle = function(){
   patronus.innerText = "Patronus: " + chosenPerson.patronus;
 
   var wandCore = document.getElementById('character-wandCore');
-  wandCore.innerText = "Wand Info: " + chosenPerson.wand.core + " -  Length: " + chosenPerson.wand.length + " - Type: " +  chosenPerson.wand.wood;
+  wandCore.innerText = "Wand Core: " + chosenPerson.wand.core + " -  Length: " + chosenPerson.wand.length + " - Type: " +  chosenPerson.wand.wood;
 
   var status = document.getElementById('character-status');
-  status.innerText = "Did they survive in the books?: " + chosenPerson.alive;
+  status.innerText = "Did they survive in the books? - " + chosenPerson.alive;
 };
 
 // ------------------------------------------------------------------
